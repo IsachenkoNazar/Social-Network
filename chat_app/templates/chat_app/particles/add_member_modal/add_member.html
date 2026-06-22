@@ -1,0 +1,16 @@
+{% load static %}
+
+<div class="group-members">
+    <div class="search-input-container"><img src="{% static 'chat_app/icons/search.svg' %}" alt=""><input type="text" class="contacts-search" placeholder="Пошук"></div>
+
+    <div class="select-container">
+        <p id="selected-count">Вибрано: 0</p>
+    </div>
+
+    <div class="members-list">
+        <div class="members-container contacts-modal-scroll">
+            <div class="contacts-modal-container"></div>
+            <div class="contacts-modal-sentinel" style="height: 100%;"></div>
+        </div>
+    </div>
+</div>

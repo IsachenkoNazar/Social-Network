@@ -1,0 +1,11 @@
+{% load static %}
+
+{% for chat in chats %}
+    {% include 'chat_app/particles/chat_sections/chat_item.html' %}
+{% empty %}
+    {% if show_contacts %}
+        {% include 'chat_app/particles/chat_sections/contacts_list.html' with contacts=contacts %}
+    {% else %}
+        <p class="chat-list-empty">Тут ще нічого немає</p>
+    {% endif %}
+{% endfor %}

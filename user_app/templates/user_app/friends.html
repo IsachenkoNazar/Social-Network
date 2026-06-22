@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+{% endblock %}
+
+{% block title %}
+    Friends page
+{% endblock title %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/side_panel.css' %}">
+    <link rel="stylesheet" href="{% static 'user_app/css/friends.css' %}">
+    <link rel="stylesheet" href="{% static 'post_app/css/post_content.css' %}">
+    <link rel="stylesheet" href="{% static 'post_app/css/show_post.css' %}">
+{% endblock links %}
+
+{% block side_panel %}
+    <div class="friends-nav-content">
+        {% include 'user_app/particles/friend/friends_nav.html' %}
+    </div>
+    <div class="profile-container" id="profileContent" style="display: none;">
+        
+    </div>
+{% endblock side_panel %}
+
+{% block content %}
+    <div id="friends-main-content">
+        {% include 'user_app/particles/friend/friends_home.html' %}
+        {% include 'user_app/particles/friend/friends_section.html' %}
+        <div id="friendsLoaderLine"></div>
+    </div>
+
+    <section id="friend-posts-view" class="friend-posts-view" style="display: none;">
+        <div class="row-bar">
+            <h2 id="friend-posts-title">Дописи користувача</h2>
+            <button type="button" id="friend-posts-back" class="friends-back-home">Повернутись</button>
+        </div>
+        {% include 'post_app/particles/post_content.html' %}
+    </section>
+{% endblock content %}
+
+{% block scripts %}
+    <script type="module" src="{% static 'user_app/js/friends.js' %}"></script>
+    <script type="module" src="{% static 'user_app/js/friend_actions.js' %}"></script>
+    <script type="module" src="{% static 'user_app/js/friends_confirm.js' %}"></script>
+{% endblock scripts %}

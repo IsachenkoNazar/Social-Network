@@ -1,0 +1,64 @@
+{% load static %}
+
+<div class="modal-container" style="display: none;">
+    <div class="create-post-container">
+        <div class="post-errors"></div>
+    
+        <div class="close-cross-container"><img src="{% static 'post_app/icons/close-cross.svg' %}" alt="close-cross" class="close-cross"></div>
+        <h1>Створення публікації</h1>
+        <form id="post-create-form" method="post" action="{% url 'create_post' %}" enctype="multipart/form-data">
+            <div>
+                {{ form_create.title.label_tag }}
+                {{ form_create.title }}
+            </div>
+    
+            <div>
+                {{ form_create.topic.label_tag }}
+                {{ form_create.topic }}
+            </div>
+    
+            <div id="id_tags" class="id-tags">
+                {% for checkbox in form_create.tags %}
+                    {{ checkbox }}
+                {% endfor %}
+                <button type="button" id="add-tag">
+                    <img src="{% static 'post_app/icons/additional-info.svg' %}" alt="">
+                </button>
+            </div>
+    
+            <div class="text-area-container">
+                {{ form_create.content }}
+            </div>
+
+            <div>
+                {{ form_create.image }}
+            </div>
+
+            <div class="text-link" id="links-list">
+                <label for="https-link">Посилання:</label>    
+                <div class="container-link">
+                    <input type="url" name="links" id="https-link" placeholder="https://example.com">
+                    <div class="container-link-buttons">
+                        <button type="button" id="add-link" class="add-link">
+                            <img src="{% static 'post_app/icons/additional-info.svg' %}" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="images" id ="images-preview">
+                  
+            </div>
+
+            <div class="buttons">
+                <label for="file-input">
+                    <img src="{% static 'post_app/icons/add-image.svg' %}" alt="">
+                </label>
+                <button type="submit" class="publicate">
+                    Публікація
+                    <img src="{% static 'post_app/icons/send.svg' %}" alt="">
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

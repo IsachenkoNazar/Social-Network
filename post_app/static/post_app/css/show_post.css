@@ -1,0 +1,140 @@
+.post-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    gap: 0.8vh;
+}
+
+.post{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 64.1vw;
+    height: fit-content;
+}
+
+.author-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 64.1vw;
+    height: 9.1vh;
+
+    gap: 16px;
+    padding: 20px;
+
+    border: 1px solid #CDCED2;
+    background-color: #FFFFFF;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.author-avatar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+   align-items: center;
+
+    width: 25.4vw;
+    height: 4.7vh;
+
+    gap: 10px;
+}
+
+.post-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+    width: 64.1vw;
+    flex: 1;
+
+    gap: 1.6vh;
+    padding: 20px 16px;
+
+    border: 1px solid #CDCED2;
+    border-top: none;
+    background-color: #FFFFFF;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.post-info h2{
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+p{
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+.post-info .tag-text{
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(84, 60, 82, 1);
+}
+
+.link-content{
+    text-decoration: underline;
+    color: rgba(84, 60, 82, 1);
+}
+
+/* .image-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    gap: 16px;
+}
+
+.image-content img{
+    width: 100%;
+    height: 300px;
+
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow:0 4px 20px rgba(0,0,0,0.1);
+} */
+
+.image-content{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.image-content a{
+    display: block;
+    width: 18rem;
+
+    aspect-ratio: 1/1;
+
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.image-content img{
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+}

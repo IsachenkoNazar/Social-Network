@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    User page
+{% endblock title %}
+
+
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/side_panel.css' %}">
+<link rel="stylesheet" href="{% static 'profile_app/css/settings.css' %}">
+<link rel="stylesheet" href="{% static 'profile_app/js/alboms.js' %}">
+<link rel="stylesheet" href="{% static 'profile_app/css/side_panel_settings.css' %}">
+<link rel="stylesheet" href="{% static 'profile_app/css/edit_profile_card.css' %}">
+<link rel="stylesheet" href="{% static 'profile_app/css/edit_profile_info.css' %}">
+{% endblock links %}
+
+{% block side_panel %}
+{% include 'profile_app/particles/side_panel_settings.html' %}
+{% endblock side_panel %}
+
+{% block content %}
+<form action="{% url 'settings' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="settings-container">
+        {% include 'profile_app/particles/edit_forms/edit_profile_card.html' %}
+        <div class="profile-panel" id="profilePanel">
+            <div class="edit-info">
+                <p>Картка профілю</p>
+                <div class="edit-container">
+                    <button type="button" id="editButton">
+                        <img src="{% static 'profile_app/icons/edit-info.svg' %}" alt="">
+                    </button>
+                </div>
+            </div>
+            <div class = "author-profile">
+                <div class = "image-container">
+                    <img src="{% static 'user_app/icons/Profile.png' %}" alt="">
+                </div>
+                <h2 class="user-full-name">{{ request.user.get_full_name|default:"Без імені" }}</h2>
+                <p class="username-display">@{{ request.user.username }}</p>
+            </div>
+        </div>
+        {% include 'profile_app/particles/edit_forms/edit_profile_info.html' %}
+        <div class="setting-info" id="settingInfo">
+            <div class="own-info">
+                <p>Особиста інформація</p>
+                <div class="edit-info">
+                    <button type="button" id="editProfileButton">
+                        <img src="{% static 'profile_app/icons/edit-info.svg' %}" alt="">
+                    </button>
+                </div>
+            </div>
+            <div class="personal-info" id="personalInfo">
+                <label for="{{ info_form.first_name.id_for_filter }}">Ім'я</label>
+                {{ info_form.first_name }}
+                <label for="{{ info_form.last_name.id_for_label }}">Прізвище</label>
+                {{ info_form.last_name }}
+                <label for="{{info_form.birth_date.id_for_label}}">Дата народження</label>
+                <div class="born-div">
+                    {{ info_form.birth_date }}
+                    <img src="{% static 'profile_app/icons/eye-info.svg' %}" alt="">
+                </div>  
+                    <label for="{{ info_form.email.id_for_label }}">Електронна адреса</label>
+                <div class="email-div">   
+                    {{ info_form.email }}   
+                    <img src="{% static 'profile_app/icons/eye-info.svg' %}" alt= ''>
+                </div>
+                 
+                <div class="password-container-div">
+                    <div class = "personal-password">
+                        <p>Пароль</p>
+                        <div class="edit-info">
+                            <button type="button" id="editPasswordButton">
+                                <img src="{% static 'profile_app/icons/edit-password.svg' %}" alt="">
+                            </button>
+                        </div>
+                    </div>
+                <label for="{{ password_form.password.id_for_label }}">Пароль</label>
+                    <div class="password-div">
+                        {{ password_form.password }}
+                        <img src="{% static 'profile_app/icons/eye-info.svg' %}" alt="">
+                    </div>
+                </div>
+            </div>           
+        </div>
+        <div class="settings-signature">
+            <div class="signature-info">
+                <p>Варіанти підпису</p>
+                <div class="edit-info">
+                    <p>
+                    <img src="{% static 'profile_app/icons/edit-info.svg' %}" alt="">
+                    </p>
+                </div>
+            </div>
+
+            <div class="author-info">
+                <div class="pseudonym-info">
+                    {{ signature_form.is_text_signature }}
+                    <label for="pseudonym">Псевдонім автора</label>
+                </div>
+                <div class="signature-info-container" style="border-color: transparent;">
+                    {{ info_form.first_name }}
+                </div>
+                <div class="signature-information">
+                    {{ signature_form.is_text_signature }}
+                    <label for="{{ signature_form.is_text_signature.id_for_label }}">Мій електронний підпис</label>
+                </div>
+                <div class="signature-image">
+                    <p>
+                        <img src="{% static 'profile_app/icons/Example-Second.png' %}" alt="Example-Second">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'profile_app/js/settings.js' %}"></script>
+{% endblock scripts %}

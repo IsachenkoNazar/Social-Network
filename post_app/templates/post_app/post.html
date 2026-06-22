@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+{% endblock %}
+
+{% block title %}
+    Post page
+{% endblock title %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/side_panel.css' %}">
+    <link rel="stylesheet" href="{% static 'home_app/css/side_panel_home.css' %}">
+    <link rel="stylesheet" href="{% static 'post_app/css/post_content.css' %}">
+    <link rel="stylesheet" href="{% static 'post_app/css/create_post.css' %}">
+    <link rel="stylesheet" href="{% static 'post_app/css/show_post.css' %}">
+{% endblock links %}
+
+{% block side_panel %}
+    <div class="profile-container">
+        {% include 'particles/header_content.html' %}
+    </div>
+
+{% endblock side_panel %}
+
+{% block content %}
+    {% include 'post_app/particles/create_post.html' %}
+    {% include 'post_app/particles/add_tag.html' %}
+    {% include 'post_app/particles/block_create_post.html' %}
+    {% include 'post_app/particles/post_content.html' %}
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'post_app/js/post.js' %}"></script>
+    <script type="module" src="{% static 'post_app/js/create_post.js' %}"></script>
+    <script src="{% static 'post_app/js/post_list.js' %}"></script>
+{% endblock scripts %}

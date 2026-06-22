@@ -1,0 +1,40 @@
+{% load static %}
+
+<div class="container-info" id="sidePanelRequests">
+    <div class="name-info">
+        <h4>
+            <span class="side-panel-icon-wrapper">
+                <img src="{% static 'icons/friend.svg' %}" alt="">
+                {% if friend_requests_count %}
+                    <span class="side-panel-icon-badge{% if friend_requests_count >= 10 %} count-badge--multi{% endif %}">
+                        {% if friend_requests_count > 99 %}99+{% else %}{{ friend_requests_count }}{% endif %}
+                    </span>
+                {% endif %}
+            </span>
+            <span>Запити</span>
+        </h4>
+        <h4>
+            <a href="{% url 'friends' %}?section=requests" class="side-panel-link">Дивитися всі</a>
+        </h4>
+    </div>
+
+    <div class="users-block">
+        {% for request in friend_requests %}
+            <a href="{% url 'friends' %}?section=requests" class="user side-panel-user-link">
+                <div class="img">
+                    {% if request.avatar %}
+                        <img src="{{ request.avatar }}" alt="{{ request.username }}">
+                    {% else %}
+                        <img src="{% static 'icons/Avatar1.png' %}" alt="{{ request.username }}">
+                    {% endif %}
+                </div>
+                <div class="text-request">
+                    <h3>{{ request.full_name|default:request.username }}</h3>
+                    <!-- <p>@{{ request.username }}</p> -->
+                </div>
+            </a>
+        {% empty %}
+            <p class="side-panel-empty">Нових запитів немає</p>
+        {% endfor %}
+    </div>
+</div>

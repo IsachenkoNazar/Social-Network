@@ -1,0 +1,36 @@
+{% load static %}
+
+{% csrf_token %}
+<div class="modal-window" id="modalWindow" style="display: none;">
+    <div class="header-container">
+        <h3>Картка профілю</h3>
+        <button type="submit" id="saveButton">
+            <img src="{% static 'profile_app/icons/button-save-edit.svg' %}" alt="">
+        </button>  
+    </div>
+    <div class="edit-photo">
+        <p>Оберіть або завантажте фото профілю</p>
+        <div class = "image-card-container">
+            <img src="{% static 'user_app/icons/Profile.png' %}" alt="">
+        </div>
+        <div class="buttons-card-container">
+            <input type="file" id="photo-add" accept="image/*" multiple style="display: none;">
+            
+            <input type="file" id="photo-select" accept="image/*" style="display: none;">
+            
+            <button type="button" onclick="document.getElementById('photo-add').click()">
+                + Додайте фото
+            </button>
+            
+            <button type="button" onclick="document.getElementById('photo-select').click()">
+                🖼 Оберіть фото
+            </button>
+        </div>
+    </div>
+    <div class="edit-card-container">
+        <h2 class="user-full-name">{{ request.user.get_full_name|default:"Без імені" }}</h2>
+        <label for=""></label>
+        <p>Ім’я користувача</p>
+        <p>@thelili</p>
+    </div>
+</div>

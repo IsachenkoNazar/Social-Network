@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Alboms page
+{% endblock title %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/side_panel.css' %}">
+    <link rel="stylesheet" href="{% static 'profile_app/css/alboms.css' %}">
+    <link rel="stylesheet" href="{% static 'profile_app/css/side_panel_settings.css' %}">
+{% endblock links %}
+
+{% block side_panel %}
+    {% include 'profile_app/particles/side_panel_settings.html' %}
+{% endblock side_panel %}
+
+{% block content %}
+    <div class="alboms-container">
+        <div class="albom-panel">
+            <div class="edit-albom">
+                <p>Мої фото</p>
+                <div class="edit-albom-container" id="EditButton">
+                    <input type="file" accept="image/*" id="choose-image-to-add" hidden>
+                    <label for="choose-image-to-add">
+                        <img src="{% static 'profile_app/icons/add-image.svg' %}" alt="">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="create-albom">
+            <div class="alboms-status">
+                <p>Немає ще жодного альбому</p>
+                <div class="create-button">
+                    <img src="{% static 'profile_app/icons/create-albom.svg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'post_app/js/alboms.js' %}"></script>
+    <script src="{% static 'post_app/js/settings.js' %}"></script>
+{% endblock scripts %}

@@ -1,0 +1,13 @@
+{% load static %}
+
+<div class="group" id="edit-participant-modal" data-contacts-modal-type="edit-participant" style="display: none;">
+    <div class="close-cross-container"><img src="{% static 'post_app/icons/close-cross.svg' %}" alt="close-cross" class="close-cross"></div>
+    <h1>Додати учасника</h1>
+    
+    {% include "chat_app/particles/add_member_modal/add_member.html" %}
+
+    <div class="button-container">
+        <button type="button" id="cancel-add-participant">Скасувати</button>
+        <button type="button" id="save-add-participant" class="next-button">Зберегти</button>
+    </div>
+</div>

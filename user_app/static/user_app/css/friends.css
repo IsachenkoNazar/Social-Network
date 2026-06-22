@@ -1,0 +1,227 @@
+#friends-main-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    gap: 0.8vh;
+}
+
+.friends-container-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    gap: 0.8vh;
+}
+
+.requests-section, .recommendations-section, .friends-section, .all-friends-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    width: 64vw;
+    padding: 16px;
+    gap: 1.6vh;
+
+    background-color: white;
+    border: 1px solid rgba(205, 206, 210, 1);
+    border-radius: 10px;
+}
+
+.all-friends-section{
+    flex: 1 1 auto;
+    min-height: 100%;
+    height: 100%;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.all-friends-section::-webkit-scrollbar {
+    display: none;
+}
+
+.requests-section{
+    height: 33.7vh;
+}
+
+.recommendations-section, .friends-section{
+    height: 61vh;
+}
+
+.row-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 1.8vh;
+}
+
+.row-bar h2{
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(7, 10, 28, 1);
+}
+
+.row-bar button, .friends-back-home{
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: rgba(84, 60, 82, 1);
+
+    background-color: transparent;
+    border: none;
+}
+
+.cards-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    /* flex: 1; */
+
+    /* width: 100%; */
+    height: fit-content;
+    gap: 0.8vh;
+}
+
+.friend-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 20vw;
+    height: 27vh;
+
+    background-color: white;
+    border: 1px solid rgba(205, 206, 210, 1);
+    border-radius: 10px;
+    gap: 1.1vw;
+}
+
+.friend-card .friend-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.friend-card .friend-info h1{
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: -1%;
+    text-align: center;
+}
+
+.friend-card .friend-info h3{
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -1%;
+    text-align: center;
+}
+
+.buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1.1vw;
+}
+
+.buttons-container button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: fit-content;
+    height: fit-content;
+
+    padding: 1.04vh 1.1vw;
+
+    border-radius: 1234px;
+
+}
+
+.buttons-container button:first-child{
+    background-color: rgba(84, 60, 82, 1);
+    color: white;
+}
+
+.buttons-container button:last-child{
+    background-color: transparent;
+    border: 1px solid rgba(84, 60, 82, 1);
+}
+
+.selected{
+    color: #070A1C !important;
+    border-bottom: 2px solid #543C52 !important;
+    padding-bottom: 0.8vh !important;
+}
+
+.friend-posts-view{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    flex: 1;
+    width: 64vw;
+    min-height: 100%;
+    height: 100%;
+    padding: 16px;
+    gap: 1.6vh;
+
+    background-color: white;
+    border: 1px solid rgba(205, 206, 210, 1);
+    border-radius: 10px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.friend-posts-view .post-list{
+    width: 100%;
+    align-items: stretch;
+}
+
+.friend-posts-view .post{
+    width: 100%;
+}
+
+.friend-posts-view .author-info,
+.friend-posts-view .post-info{
+    width: 100%;
+}
+
+/* .profile-container{
+    gap: 0.83vh;
+} */

@@ -1,0 +1,15 @@
+{% load static %}
+
+<div class="section-add-tag" style="display: none;">
+    <div class="close-cross-container"><img src="{% static 'post_app/icons/close-cross.svg' %}" alt="close-cross" class="close-cross"></div>
+    <h1>Додати хештег</h1>
+    <form action="{% url 'add_tag' %}" method="post" id="add-tag-form">
+        <div class="tag-input">
+            {{ form_add_tag.as_p }}
+        </div>
+        <div class="buttons-container">
+            <p class="back-create">Скасувати</p>
+            <button type="submit">Зберегти</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,27 @@
+{% load static %}
+
+<button type="button" id="create-group-btn">
+    <img src="{% static 'chat_app/icons/plus.svg' %}" alt="">
+    Створити груповий чат
+</button>
+
+<div class="contacts-container">
+    <div>
+        <img src="{% static 'chat_app/icons/people.svg' %}" alt="">
+        <p class="label-icon">Контакти</p>
+    </div>
+
+    <div class="search-input-container">
+        <img src="{% static 'chat_app/icons/search.svg' %}" alt="">
+        <input type="text" id="contacts-list-search" placeholder="Пошук">
+    </div>
+    <div class="contacts-scroll">
+        <div id="contactsContainer" class="contacts-container-list">
+            <div id="contactsList">
+                {% include "chat_app/particles/chat_sections/contacts_list.html" %}
+            </div>
+            <div id="contacts-sentinel"></div>
+        </div>
+    </div>
+</div>
+

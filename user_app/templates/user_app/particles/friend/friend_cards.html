@@ -1,0 +1,32 @@
+{% load static %}
+{% comment %}Partial: renders a list of user cards. Expects `users` and `section` in context.{% endcomment %}
+
+{% for user in users %}
+    {% if user.username %}
+        <article class="friend-card">
+            <img src="{% static 'user_app/icons/User1.png' %}" alt="User">
+            <div class="friend-info">
+                <h1>{{ user.get_full_name|default:user.username }}</h1>
+                <h3>@{{ user.username }}</h3>
+            </div>
+            <div class="buttons-container">
+                {% if section == "requests" %}
+                    <button type="button" class="open-profile-btn" data-user-id="{{ user.id }}" data-section="{{ section }}">
+                        Підтвердити
+                    </button>
+                    <button type="button" data-friend-action data-url="{% url 'friend_action' user.id 'delete' %}">Відхилити</button>
+                {% elif section == "recommendations" %}
+                   <button type="button" class="open-profile-btn" data-user-id="{{ user.id }}" data-section="{{ section }}">
+                        Додати
+                    </button>
+                    <button type="button" data-friend-action data-url="{% url 'friend_action' user.id 'dismiss' %}">Видалити</button>
+                {% else %}
+                    <button type="button">Повідомлення</button>
+                    <button type="button" data-friend-action data-url="{% url 'friend_action' user.id 'delete' %}">Видалити</button>
+                {% endif %}
+            </div>
+        </article>
+    {% endif %}
+{% empty %}
+    <p class="empty-note">Немає користувачів у цьому блоці.</p>
+{% endfor %}

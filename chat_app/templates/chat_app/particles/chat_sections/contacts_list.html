@@ -1,0 +1,20 @@
+{% load static %}
+
+{% for letter, contacts in grouped_contacts.items %}
+    {% for contact in contacts %}
+        <div class="people-contact"
+                data-user-id="{{ contact.id }}"
+                data-chat-user="{{ contact.id }}"
+                data-chat-username="{{ contact.username }}"
+                style="cursor: pointer;">
+            
+            {% if contact.profile.avatar %}
+                <img src="{{ contact.profile.avatar.url }}" alt="">
+            {% else %}
+                <img src="{% static 'chat_app/images/Avatar-1.png' %}" alt="">
+            {% endif %}
+
+            <p class="contact-name">{{ contact.username }}</p>
+        </div>
+    {% endfor %}
+{% endfor %}

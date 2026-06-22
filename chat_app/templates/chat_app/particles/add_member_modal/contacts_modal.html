@@ -1,0 +1,33 @@
+{% load static %}
+
+{% for letter, contacts in grouped_contacts.items %}
+    <div class="contacts-group">
+        <p class="contacts-letter">{{ letter }}</p>
+
+        {% for contact in contacts %}
+            <div class="people-contact-modal"
+                    data-user-id="{{ contact.id }}"
+                    data-chat-username="{{ contact.username }}"
+                    style="cursor: pointer;">
+                
+                {% if contact.profile.avatar %}
+                    <img src="{{ contact.profile.avatar.url }}" alt="">
+                {% else %}
+                    <img src="{% static 'chat_app/images/Avatar-1.png' %}" alt="">
+                {% endif %}
+
+                <p class="contact-name">{{ contact.username }}</p>
+                <div class="checkbox-container">
+                    <label class="input-checkbox">
+                        <input type="checkbox"
+                            class="group-user-checkbox"
+                            name="users[]"
+                            value="{{ contact.id }}"
+                            data-avatar="{% if contact.profile.avatar %}{{ contact.profile.avatar.url }}{% else %}{% static 'chat_app/images/Avatar-1.png' %}{% endif %}">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}

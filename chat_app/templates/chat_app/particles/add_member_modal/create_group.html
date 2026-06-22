@@ -1,0 +1,13 @@
+{% load static %}
+
+<div class="group" id="create-group" data-contacts-modal-type="create-group" style="display: none;">
+    <div class="close-cross-container"><img src="{% static 'post_app/icons/close-cross.svg' %}" alt="close-cross" class="close-cross"></div>
+    <h1>Нова група</h1>
+
+    {% include "chat_app/particles/add_member_modal/add_member.html" %}
+
+    <div class="button-container">
+        <button type="button" id="cancel-create">Скасувати</button>
+        <button type="button" id="next-create" class="next-button">Далі</button>
+    </div>
+</div>

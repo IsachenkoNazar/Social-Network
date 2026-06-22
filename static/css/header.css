@@ -1,0 +1,92 @@
+header nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+    width: 92vw;
+}
+
+.logo-auth-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 94vw;
+}
+
+.logo{
+    width: 10.1vw;
+    height: 2vh;
+}
+
+nav div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    width: 53.8vw;
+    height: 4vh;
+    gap: 1.7vw;
+    
+    /* background-color: #0000ff; */
+}
+
+nav div a{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: fit-content;
+    height: 2.9vh;
+    gap: 0.5vw;
+    
+    /* background-color: #ff0000; */
+}
+
+nav div a span{
+    font-size: 1.8vh;
+    color: #070A1C;
+}
+
+nav div .icons{
+    width: 1.4vw;
+    height: 2vh;
+}
+
+.header-icon-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.4vw;
+    height: 2vh;
+    flex-shrink: 0;
+}
+
+.header-icon-badge {
+    position: absolute;
+    top: -9px;
+    right: -10px;
+}
+
+nav div .button-exit{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 6.6vw;
+    height: 4vh;
+    
+    /* background-color: transparent; */
+
+    cursor: pointer;
+}
+
+nav div .button-exit img{
+    height: 100%;
+}

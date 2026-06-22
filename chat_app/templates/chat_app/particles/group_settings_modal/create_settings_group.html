@@ -1,0 +1,16 @@
+{% load static %}
+
+<div class="group" id="add-create-member" style="display: none;">
+    <!-- ` style="display: none;"` -->
+    <div class="close-cross-container"><img src="{% static 'post_app/icons/close-cross.svg' %}" alt="close-cross" class="close-cross"></div>
+    <h1>Нова група</h1>
+    
+    <form id="create-group-form" enctype="multipart/form-data">
+        {% include "chat_app/particles/group_settings_modal/add_settings.html" %}
+
+        <div class="button-container">
+            <button type="button" id="back-to-add-member">Назад</button>
+            <button type="submit" class="next-button">Створити групу</button>
+        </div>
+    </form>
+</div>

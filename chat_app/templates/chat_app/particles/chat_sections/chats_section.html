@@ -1,0 +1,41 @@
+{% load static %}
+
+<div class="messages-container">
+    <div class="row-block">
+        <div>
+            <span class="chat-section-icon-wrapper">
+                <img src="{% static 'chat_app/icons/chat.svg' %}" alt="">
+                {% if personal_unread_count %}
+                    <span class="chat-section-icon-badge{% if personal_unread_count >= 10 %} count-badge--multi{% endif %}">
+                        {% if personal_unread_count > 99 %}99+{% else %}{{ personal_unread_count }}{% endif %}
+                    </span>
+                {% endif %}
+            </span>
+            <p class="label-icon">Повідомлення</p>
+        </div>
+    </div>
+
+    <div class="content-chats">
+        {% include 'chat_app/particles/chat_sections/chat_list.html' with chats=personal_chats show_contacts=True online_user_ids=online_user_ids %}
+    </div>
+</div>
+
+<div class="messages-container">
+    <div class="row-block">
+        <div>
+            <span class="chat-section-icon-wrapper">
+                <img src="{% static 'chat_app/icons/people.svg' %}" alt="">
+                {% if group_unread_count %}
+                    <span class="chat-section-icon-badge{% if group_unread_count >= 10 %} count-badge--multi{% endif %}">
+                        {% if group_unread_count > 99 %}99+{% else %}{{ group_unread_count }}{% endif %}
+                    </span>
+                {% endif %}
+            </span>
+            <p class="label-icon">Групові чати</p>
+        </div>
+    </div>
+
+    <div class="content-chats">
+        {% include 'chat_app/particles/chat_sections/chat_list.html' with chats=group_chats show_contacts=False online_user_ids=online_user_ids %}
+    </div>
+</div>

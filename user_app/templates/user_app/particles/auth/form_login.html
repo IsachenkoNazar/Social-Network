@@ -1,0 +1,11 @@
+<div class="section-login">
+    <nav>
+        <p id="register">Реєстрація</p>
+        <p class="select">Авторизація</p>
+    </nav>
+    <p class="text-content">Раді тебе знову бачити!</p>
+    <form action="{% url 'login' %}" method="post">
+        {{ form_login.as_p }}
+        <button type="submit">Увійти</button>
+    </form>
+</div>

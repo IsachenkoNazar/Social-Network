@@ -1,0 +1,13 @@
+<section class="friends-container-section" id="friends-home">
+    {% for key, section in sections.items %}
+        <section class="{{ key }}-section">
+            <div class="row-bar">
+                <h2>{{ section.title }}</h2>
+                <button type="button" class="view-all-btn" data-section-link="{{ key }}">Дивитись всі</button>
+            </div>
+            <div class="cards-container" data-home-section="{{ key }}">
+                {% include 'user_app/particles/friend/friend_cards.html' with users=section.users section=key %}
+            </div>
+        </section>
+    {% endfor %}
+</section>

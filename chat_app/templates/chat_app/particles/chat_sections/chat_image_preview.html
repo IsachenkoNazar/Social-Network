@@ -1,0 +1,20 @@
+{% load static %}
+
+<div id="image-preview-modal" class="group" style="display: none;">
+    <div class="close-cross-container">
+        <button class="image-preview-close"><img src="{% static 'post_app/icons/close-cross.svg' %}" alt="close-cross" class="close-cross">`</button>
+    </div>
+    <div class="images" id="preview-images-container">
+
+    </div>
+    <div class="image-preview-text-area">
+        <textarea id="preview-message-text" name="preview-message" placeholder="Напишіть повідомлення..."></textarea>
+    </div>
+    <div class="image-preview-actions">
+        <label for="message-image" class="img-container">
+            <img src="{% static  'chat_app/icons/img-button.svg' %}" alt="">
+        </label>
+        <button id="cancel-preview" class="btn-cancel">Скасувати</button>
+        <button id="send-with-preview" class="btn-send">Відправити</button>
+    </div>
+</div>

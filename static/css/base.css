@@ -1,0 +1,177 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'GT Walsheim Pro';
+    font-weight: 500;
+}
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+html div::-webkit-scrollbar {
+    padding: 0;
+    width: fit-content;
+    border-radius: 10px;
+    width: 8px;
+}
+
+html div::-webkit-scrollbar-track {
+    background: rgba(233, 229, 238, 1);
+    border-radius: 10px;
+}
+
+html div::-webkit-scrollbar-thumb {
+    background: rgba(84, 60, 82, 1);
+    border-radius: 10px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 2vh;
+    height: 100%;
+
+    background-color: #FAF8FF;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 9vh;
+    
+    background-color: #FFFFFF;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    
+    gap: 1vw;
+    width: 90%;
+    height: 100%;
+    min-height: 0;
+}
+
+.side-panel-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 0.8vw;
+    padding-bottom: 2vh;
+
+    width: 24vw;
+    height: fit-content;
+
+    background-color: transparent;
+}
+
+.div-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    height: calc(100vh - 9vh - 2vh);
+    min-height: calc(100vh - 9vh - 2vh);
+
+    width: fit-content;
+
+    gap: 0.8vh;
+    padding-bottom: 1vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.div-container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.side-panel-unread-badge,
+.chat-unread-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    max-width: 20px;
+    padding: 3px;
+    border-radius: 50%;
+    background-color: #ef4444;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+    border: 1px solid #fff;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+.chat-unread-badge.count-badge--multi {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    max-width: 24px;
+    padding: 2px;
+    font-size: 8px;
+    letter-spacing: -0.1px;
+}
+
+.side-panel-icon-badge,
+.chat-section-icon-badge,
+.header-icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    max-width: 18px;
+    padding: 2px;
+    border-radius: 50%;
+    background-color: #ef4444;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+    border: 1px solid #fff;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.side-panel-icon-badge.count-badge--multi,
+.chat-section-icon-badge.count-badge--multi,
+.header-icon-badge.count-badge--multi {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    max-width: 22px;
+    padding: 2px;
+    font-size: 8px;
+    letter-spacing: -0.1px;
+}
+
+/* 
+width: 1440
+height: 960
+*/

@@ -1,0 +1,84 @@
+{% load static %}
+
+{% if chat.is_group %}
+    <div class="container-chat{% if chat.unread_count %} container-chat--unread{% endif %}" data-chat-id="{{ chat.id }}">
+        <div class="chat-avatar-wrapper group-avatar-wrapper">
+            {% if chat.avatar %}
+                <img src="{{ chat.avatar.url }}" alt="{{ chat.name|default:'Груповий чат' }}">
+            {% else %}
+                <img src="{% static 'chat_app/icons/people.svg' %}" alt="{{ chat.name|default:'Груповий чат' }}">
+            {% endif %}
+            {% if chat.unread_count %}
+                <span class="chat-unread-badge{% if chat.unread_count >= 10 %} count-badge--multi{% endif %}">
+                    {% if chat.unread_count > 99 %}99+{% else %}{{ chat.unread_count }}{% endif %}
+                </span>
+            {% endif %}
+        </div>
+        <div class="chat-info">
+            <div>
+                <h2>{{ chat.name|default:"Груповий чат" }}</h2>
+                <h3>
+                    {% if chat.last_message_text %}
+                        {{ chat.last_message_text }}
+                    {% elif chat.last_message_has_images %}
+                        зображення
+                    {% else %}
+                        Немає повідомлень
+                    {% endif %}
+                </h3>
+            </div>
+            <div>
+                <p>{{ chat.last_message_time|date:"H:i" }}</p>
+            </div>
+        </div>
+    </div>
+{% else %}
+    {% for user in chat.users.all %}
+        {% if user != request.user %}
+            <div class="container-chat{% if chat.unread_count %} container-chat--unread{% endif %}" data-chat-id="{{ chat.id }}" data-chat-user="{{ user.id }}" data-chat-username="{{ user.username }}">
+                <div class="chat-avatar-wrapper">
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.url }}" alt="">
+                    {% else %}
+                        <img src="{% static 'chat_app/images/Avatar-1.png' %}" alt="">
+                    {% endif %}
+                    <span class="online-indicator {% if online_user_ids and user.id in online_user_ids %}online-indicator--online{% else %}online-indicator--offline{% endif %}"></span>
+                    {% if chat.unread_count %}
+                        <span class="chat-unread-badge{% if chat.unread_count >= 10 %} count-badge--multi{% endif %}">
+                            {% if chat.unread_count > 99 %}99+{% else %}{{ chat.unread_count }}{% endif %}
+                        </span>
+                    {% endif %}
+                </div>
+                <div class="chat-info">
+                    <div>
+                        <h2>{{ user.username }}</h2>
+                        <h3>
+                            {% if chat.last_message_text %}
+                                {{ chat.last_message_text }}
+                            {% elif chat.last_message_has_images %}
+                                Зображення
+                            {% else %}
+                                Немає повідомлень
+                            {% endif %}
+                        </h3>
+                    </div>
+                    <div>
+                        <p>{{ chat.last_message_time|date:"H:i" }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% empty %}
+        <div class="container-chat{% if chat.unread_count %} container-chat--unread{% endif %}" data-chat-id="{{ chat.id }}">
+            <div class="chat-info">
+                <div>
+                    <h2>Особистий чат</h2>
+                    <h3>{{ chat.last_message_text|default:"Немає повідомлень" }}</h3>
+                </div>
+                <div>
+                    <p>{{ chat.last_message_time|date:"H:i" }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}

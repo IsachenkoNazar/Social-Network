@@ -1,0 +1,98 @@
+.info-modal{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: flex-start;
+
+    width: 62vw; 
+    height: fit-content;
+}
+
+.own-profile-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    width: 62vw;
+    height: 4.10vh;
+}
+
+.button-info-card-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    width: 16.5vw;
+    height: 4vh;
+
+    gap: 10px;
+    padding-right: 10px;
+}
+
+.button-info-card-container button{
+    width: 7.5vw;
+    height: 4vh;
+
+    border: none;
+    background-color: transparent;
+}
+
+
+.own-profile-info-container{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: flex-start;
+
+    width: 23.8vw;
+    height: 31vh;
+
+    gap: 10px;
+}
+
+.own-profile-info-container input{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+    width: 20vw;
+    height: 4.2vh;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+    border: 1px solid #81818D;
+    outline: none;
+}
+
+
+
+.own-profile-info-container .born-card-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    
+    width: 23.8vw;
+    height: 4.2vh;
+
+    gap: 10px;
+}
+.own-profile-info-container .email-card-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    
+    width: 23.8vw;
+    height: 4.2vh;
+
+    gap: 10px;
+
+}
+
+
+

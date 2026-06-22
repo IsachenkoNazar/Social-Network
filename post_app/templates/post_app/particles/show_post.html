@@ -1,0 +1,45 @@
+{% for post in posts %}    
+    <article class="post">        
+        <div class="author-info">
+            <div class="author-avatar">    
+                <img src="/static/post_app/icons/avatar(M).png" alt="">
+                <p>{{ post.author.username }}</p>
+            </div>      
+        </div>
+        
+        <div class="post-info">
+            <h2>{{ post.title }}</h2>
+            <div class="container-content">
+                <p>{{ post.content }}</p>
+
+                {% if post.tags.all %}
+                    <p class="tag-text">
+                        {% for tag in post.tags.all %}
+                            #{{ tag.name }}
+                        {% endfor %}
+                    </p>
+                {% endif %}
+            </div>
+
+            {% if post.links.all %}
+                {% for link in post.links.all %}
+                    <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="link-content">{{ link.url }}</a>
+                {% endfor %}
+            {% endif %}
+            <div class="image-content">
+                {% if post.images.all %}
+                    {% for image in post.images.all %}
+                        <p>
+                            <a href="{{ image.original_image.url }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ image.compressed_image.url }}" alt="{{ post.title }}" >
+                                <!-- style="max-width: 300px; height: auto;" -->
+                            </a>
+                        </p>
+                    {% endfor %}
+                {% endif %}        
+            </div>
+        </div>
+
+    </article>
+    <hr>
+{% endfor %}

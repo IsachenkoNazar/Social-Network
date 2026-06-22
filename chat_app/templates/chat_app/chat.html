@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block meta %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+{% endblock %}
+
+{% block title %}Chat{% endblock title %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'chat_app/css/chat.css' %}">
+    <link rel="stylesheet" href="{% static 'chat_app/css/contacts_section.css' %}">
+    <link rel="stylesheet" href="{% static 'chat_app/css/messages_section.css' %}">
+    <link rel="stylesheet" href="{% static 'chat_app/css/chats_section.css' %}">
+    <link rel="stylesheet" href="{% static 'chat_app/css/chat_modal.css' %}">
+    <link rel="stylesheet" href="{% static 'chat_app/css/chat_image.css' %}">
+    <link rel="stylesheet" href="{% static 'chat_app/css/chat_main.css' %}">
+    <link rel="stylesheet" href="{% static 'chat_app/css/components/search_input.css' %}">
+{% endblock links %}
+
+{% block content %}
+    {% include 'chat_app/particles/chats_modal.html' %}
+    {% include 'chat_app/particles/main_chats.html' %}
+{% endblock content %}
+
+{% block scripts %}
+    {{ online_user_ids|json_script:"online-users-data" }}
+
+    <script type="module">
+        import { setOnlineUserIds } from "{% static 'chat_app/js/chat/chat_open.js' %}";
+        
+        const dataElement = document.getElementById('online-users-data');
+        if (dataElement) {
+            const onlineUserIds = JSON.parse(dataElement.textContent || '[]');
+            setOnlineUserIds(onlineUserIds);
+        }
+    </script>
+    <script type="module" src="{% static 'chat_app/js/chat.js' %}"></script>
+{% endblock scripts %}

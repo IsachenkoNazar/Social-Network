@@ -1,0 +1,70 @@
+.write-post-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    flex-shrink: 0;
+
+    width: 64vw;
+    height: 13vh;
+
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(205, 206, 210, 1);
+    border-radius: 10px;
+
+    padding: 1vw;
+    gap: 1vh;
+}
+
+
+.write-post-container div{
+    width: 100%;
+    height: 6vh;
+}
+
+.write-post-container div textarea, .write-post-container div textarea::placeholder{
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 1.6vh;
+    letter-spacing: -0.7%;
+    
+    background-color: transparent;
+    border: none;
+    resize: none;
+    width: 100%;
+}
+
+.write-post-container div textarea::placeholder{
+    color: rgba(129, 129, 141, 1);
+}
+
+.write-post-container div textarea:focus{
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+.write-post-container div:last-child{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.write-post-container div button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 13vw;
+    height: 4vh;
+
+    border-radius: 1234px;
+
+    background-color: rgba(84, 60, 82, 1);
+
+    color: rgba(255, 255, 255, 1);
+    font-size: 1.4vh;
+}

@@ -1,0 +1,88 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block meta %} {% endblock meta %}
+        <title>{% block title %} {% endblock title %}</title>
+        {% block links %} {% endblock links %}
+
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts/font/stylesheet.css' %}">
+        <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <nav>
+                    {% if request.path != '/' %}
+                        <a href="{% url 'home' %}">
+                            <img src="{% static 'icons/logo.svg' %}" alt="logo.svg" class="logo">
+                        </a>
+                        <div>
+                            <a href= "{% url 'home' %}" class="url">
+                                <img src="{% static 'icons/home.svg' %}" alt="home.svg" class="icons">
+                                <span>Головна</span>
+                            </a>
+                            <a href= "{% url 'post' %}" class="url">
+                                <img src="{% static 'icons/post.svg' %}" alt="post.svg" class="icons">
+                                <span>Мої публікації</span>
+                            </a>
+                            <a href= "{% url 'friends' %}" class="url">
+                                <span class="header-icon-wrapper">
+                                    <img src="{% static 'icons/friend.svg' %}" alt="friend.svg" class="icons">
+                                    {% if header_friend_requests_count %}
+                                        <span class="header-icon-badge{% if header_friend_requests_count >= 10 %} count-badge--multi{% endif %}">
+                                            {% if header_friend_requests_count > 99 %}99+{% else %}{{ header_friend_requests_count }}{% endif %}
+                                        </span>
+                                    {% endif %}
+                                </span>
+                                <span>Друзі</span>
+                            </a>
+                            <a href= "{% url 'chat' %}" class="url">
+                                <span class="header-icon-wrapper" id="headerMessagesIcon">
+                                    <img src="{% static 'icons/group.svg' %}" alt="user.svg" class="icons">
+                                    {% if header_new_messages_count %}
+                                        <span class="header-icon-badge{% if header_new_messages_count >= 10 %} count-badge--multi{% endif %}">
+                                            {% if header_new_messages_count > 99 %}99+{% else %}{{ header_new_messages_count }}{% endif %}
+                                        </span>
+                                    {% endif %}
+                                </span>
+                                <span>Чати</span>
+                            </a>
+                            <a href= "{% url 'settings' %}" class="url">
+                                <img src="{% static 'icons/user.svg' %}" alt="user.svg" class="icons">
+                                <span>Налаштування</span>
+                            </a>
+                            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <a href="{% url 'logout' %}" class="button-exit" id="button-exit">
+                                    <img src="{% static 'icons/exit.svg' %}" alt="exit.svg">
+                                </a>
+                            </form>
+                        </div>
+                    {% else %}
+                        <div class="logo-auth-container">
+                            <a href="/">
+                                <img src="{% static 'icons/logo.svg' %}" alt="logo.svg" class="logo">
+                            </a>
+                        </div>
+                    {% endif %}
+                    
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <div class="side-panel-container">                
+                {% block side_panel %} {% endblock side_panel %}
+            </div>
+            
+            <div class="div-container">
+                {% block content %} {% endblock content %}
+            </div>
+        </main>
+        <script type="module" src="{% static 'js/base.js' %}"></script>
+        {% block scripts %} {% endblock scripts %}
+    </body>
+</html>

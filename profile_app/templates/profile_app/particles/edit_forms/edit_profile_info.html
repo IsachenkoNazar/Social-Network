@@ -1,0 +1,29 @@
+{% load static %}
+
+{% csrf_token %}
+<div class="info-modal" id="infoModal" style="display: none;">
+    <div class="own-profile-info">
+        <h3>Особиста інформація</h3>
+        <div class="button-info-card-container">
+        <button type="submit" id="saveProfileButton">
+            <img src="{% static 'profile_app/icons/button-save-edit.svg' %}" alt="">
+        </button> 
+        </div>
+    </div>
+    <div class="own-profile-info-container">
+        <label for="{{ info_form.first_name.id_for_filter }}">Ім'я</label>
+        {{ info_form.first_name }}
+        <label for="{{ info_form.last_name.id_for_label }}">Прізвище</label>
+        {{ info_form.last_name }}
+        <label for="{{info_form.birth_date.id_for_label}}">Дата народження</label>
+        <div class="born-card-div">
+            {{ info_form.birth_date }}
+            <img src="{% static 'profile_app/icons/eye-info.svg' %}" alt="">
+        </div>  
+            <label for="{{ info_form.email.id_for_label }}">Електронна адреса</label>
+        <div class="email-card-div">
+            {{ info_form.email }}   
+            <img src="{% static 'profile_app/icons/eye-info.svg' %}" alt= ''>
+        </div>
+    </div>
+</div>

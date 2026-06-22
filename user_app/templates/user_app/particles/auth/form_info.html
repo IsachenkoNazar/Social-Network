@@ -1,0 +1,13 @@
+<div class="form-info-container" style="display: none;">
+    <div class="form-info">
+        <h2>Додай деталі про себе</h2>
+            <form action="{% url 'expand_info' %}" method="post">
+                <div class="form">
+                    {{ form_info.as_p }}
+                </div>
+                <div class = "button-container">
+                    <button type="submit" class="button-continue">Продовжити</button>
+                </div>
+            </form>
+    </div>
+</div>

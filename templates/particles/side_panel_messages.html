@@ -1,0 +1,50 @@
+{% load static %}
+
+<div class="container-info" id="sidePanelMessages">
+    <div class="name-info">
+        <h4>
+            <span class="side-panel-icon-wrapper">
+                <img src="{% static 'icons/group.svg' %}" alt="">
+                {% if new_messages_count %}
+                    <span class="side-panel-icon-badge{% if new_messages_count >= 10 %} count-badge--multi{% endif %}">
+                        {% if new_messages_count > 99 %}99+{% else %}{{ new_messages_count }}{% endif %}
+                    </span>
+                {% endif %}
+            </span>
+            <span>Повідомлення</span>
+        </h4>
+        <h4>
+            <a href="{% url 'chat' %}" class="side-panel-link">Дивитися всі</a>
+        </h4>
+    </div>
+
+    <div class="users-block">
+        {% for message in recent_messages %}
+            <a href="{% url 'chat' %}?user_id={{ message.user_id }}" class="user side-panel-user-link side-panel-chat-item" data-chat-id="{{ message.chat_id }}" data-user-id="{{ message.user_id }}">
+                <div class="img side-panel-chat-avatar">
+                    {% if message.avatar %}
+                        <img src="{{ message.avatar }}" alt="{{ message.username }}">
+                    {% else %}
+                        <img src="{% static 'icons/Avatar4.png' %}" alt="{{ message.username }}">
+                    {% endif %}
+                    {% if message.unread_count %}
+                        <span class="side-panel-unread-badge{% if message.unread_count >= 10 %} count-badge--multi{% endif %}">
+                            {% if message.unread_count > 99 %}99+{% else %}{{ message.unread_count }}{% endif %}
+                        </span>
+                    {% endif %}
+                </div>
+                <div class="side-panel-chat-info">
+                    <div class="side-panel-chat-main">
+                        <h3>{{ message.username }}</h3>
+                        <p>{{ message.last_message|truncatechars:40 }}</p>
+                    </div>
+                    <div class="side-panel-chat-meta">
+                        <p class="side-panel-chat-time">{{ message.last_message_time|date:"H:i" }}</p>
+                    </div>
+                </div>
+            </a>
+        {% empty %}
+            <p class="side-panel-empty">Повідомлень ще немає</p>
+        {% endfor %}
+    </div>
+</div>

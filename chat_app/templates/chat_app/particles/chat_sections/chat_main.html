@@ -1,0 +1,43 @@
+{% load static %}
+
+<div class="message-container">
+    <div class="chat-header">
+        <button type="button" id="back-button-header-chat">
+            <img src="{% static 'chat_app/icons/back-button.svg' %}" alt="">
+        </button>
+        <img id="group-header-avatar" src="{% static 'chat_app/images/Avatar-1.png' %}" alt="">
+        <div class="chat-header-info">
+            <h2 id="chat-title"></h2>
+            <p id="chat-status" class="chat-status-text"></p>
+        </div>
+        <div class="chat-edit">
+            <button type="button" id="edit-group-btn"><img src="{% static 'chat_app/icons/edit-group.svg' %}" alt=""></button>
+            <div class="chat-action-menu" id="chat-action-menu" aria-hidden="true">
+                <button type="button" class="chat-action-item" data-action="edit_group">Редагувати групу</button>
+                <button type="button" class="chat-action-item" data-action="leave_group">Вийти з групи</button>
+                <button type="button" class="chat-action-item" data-action="delete_chat">Видалити чат</button>
+                <div class="chat-action-error" id="chat-action-error"></div>
+            </div>
+        </div>
+    </div>   
+    <div class="chat-messages" id="message-container">
+        <div class="messages-users-container" id="messages-users-container">
+            
+        </div>
+
+        <form method="post" id="form-chat" class="form-chat">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="images">    
+                <label for="message-image" class="img-container">
+                    <img src="{% static  'chat_app/icons/img-button.svg' %}" alt="">
+                </label>
+                <input type="file" name="image" id="message-image" accept="image/*" multiple hidden>
+                <label for="send-button">
+                    <div class="img-container"><img src="{% static  'chat_app/icons/send.svg' %}"></div>
+                </label>
+                <input type="submit" name="send-button" id="send-button" style="display: none;">
+            </div>
+        </form>
+    </div>
+</div>
