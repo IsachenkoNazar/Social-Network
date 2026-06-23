@@ -1,257 +1,352 @@
-Мета: мета створення цього проекту - була в особистому знайомстві з новими технологіями, навчанні дізнаватися про щось самостійно, комунікувати з іншими, та більше практикувати написання коду.
-
-
-Склад команди:
-
-Максим Субач: https://github.com/MaxS2010
-
-Яромір Трегуб: https://github.com/YaromirTregub
-
-Ісаченко Назарій: https://github.com/IsachenkoNazar
-
-
-Зміст файлів( або навігація):
-
-__init__.py - позначає папку як пакет
-
-models.py — структура даних, таблиці БД
-
-views.py - обробки запитів
-
-urls.py - зв'язок URL і view
-
-forms.pyФорми для вводу даних
-
-admin.py - реєстрація моделей в Django Admin
-
-apps.py - конфігурація додатку
-
-tests.py -  перевірка, що моделі, views, форми працюють правильно
-
-consumers.py  - обробляє вебсокет з'єднання для функцій (чат, сповіщення в реальному часі), схожий на  views.py, але для постійного з'єднання.
-
-routing.py - файл для налаштування маршрутизації веб-сокет-з'єднання. Є аналогом urls.py та працює в асинхронному режимі. У цьому файлі ми створюємо адресу URL для веб-сокет з'єднання.
-
-templates - папка, що зберігає в собі шаблони, які потім рендерить views.py
-
-static - папка, що зберігає в собі статичні файли(такі як css, js, та зображення)
-
-utils - в цьому файлі зберігаються функції, які не є моделлю, вьюхою, або формою, але потрібні для логіки
-
-
-Використані технології та модулі:
-
-Django — головний фреймворк на Python для створення сайтів.
-
-Flask — інший, простіший фреймворк на Python, схожий на Django.
-
-Django Channels — додаток до Django, щоб робити  функції типу чату в реальному часі.
-
-WebSocket — технологія, яка дозволяє сайту і серверу обмінюватись повідомленнями миттєво, без перезавантаження сторінки.
-
-ASGI — спосіб запуску Django-сайту, який підтримує WebSocket (на відміну від WSGI).
-
-WSGI — стандартний спосіб запуску звичайного Django/Flask сайту.
-
-Daphne — сервер, який запускає Django-проєкт з підтримкою WebSocket.
-
-ORM — спосіб працювати з базою даних через Python-код.
-
-SQLite — проста вбудована база даних, яку Django використовує за замовчуванням.
-
-python-dotenv — модуль, щоб зберігати секретні дані (паролі, ключі) в окремому файлі .env.
-
-Pillow — бібліотека для роботи з картинками (стиснення, зміна розміру).
-
-django-phonenumber-field — готове поле для зручного введення номера телефону в формі.
-
-colorama — робить текст у консолі кольоровим (для зручності читання помилок).
-
-HTML — мова, якою описують структуру сторінки (заголовки, кнопки, текст).
-
-CSS — мова, якою оформлюють вигляд сторінки (кольори, відступи, розміри).
-
-JavaScript (JS) — мова програмування, яка робить сторінку інтерактивною (кнопки, анімації, запити).
-
-jQuery — стара бібліотека JS, яка спрощує роботу з елементами сторінки.
-
-AJAX — старий спосіб відправляти запити на сервер без перезавантаження сторінки.
-
-Fetch API — сучасний, простіший спосіб робити те саме, що AJAX.
-
-Jinja (Jinja2) — шаблонізатор (мова для вставки даних в HTML), схожий на Django Templates.
-
-CSRF token — спеціальний ключ , який захищає форми від підробних запитів.
-
-Cookies  — для запам'ятовування користувача між сторінками (наприклад, що він залогінений).
-
-LiqPay — сервіс для приймання онлайн-оплати на сайті.
-
-Git — програма для збереження історії змін коду.
-
-GitHub — сайт, де зберігають код через Git і працюють командою.
-
-pip — програма для встановлення Python-бібліотек.
-
-venv — віртуальне середовище, для бібліотек одного проєкту.
-
-requirements.txt — файл зі списком усіх бібліотек, які потрібні проєкту.
-
-JSON — формат тексту, у якому сервер і сайт обмінюються даними
-
-
-Як запустити проект в роботу:
-
-1.Взяти проект з гіт( можна зробити гіт клон, або завантажити як ZIP
-
-2.Створити віртуальне оточення, та встановити всі необхідні модулі
-
-3. Запустити проект(python manage.py runserver), та відкрити посилання
-
-
-Зміст проєкту:
-
-user_app — відповідає за реєстрацію нових користувачів і вхід зареєстрованих. Перевіряє введені дані (email/пароль), і якщо все правильно — створює сесію, яка зберігається в куках. Захищає сторінки від тих, хто не залогінений (login_required). При виході сесія видаляється (logout). Усі форми захищені CSRF-токеном від підробних запитів.
-
-home_app — формує головну сторінку сайту і базовий шаблон, від якого успадковуються всі інші сторінки (шапка, футер, навігаційне меню). Через context_processors.py передає одні й ті самі дані (наприклад, інформацію про поточного юзера) у всі шаблони сайту автоматично, без повторення коду в кожному view.
-
-post_app — дає можливість створювати, переглядати, редагувати і видаляти пости. Модель Post пов'язана з тегами через ManyToManyField. Форма для поста прив'язана прямо до моделі (ModelForm), тож Django сам генерує поля та перевіряє дані. На сторінці показується обмежена кількість постів (пагінація), а картинки при завантаженні автоматично стискаються до потрібного розміру.
-
-profile_app — зберігає й показує розширені дані про юзера: аватар, номер телефону, опис. Показує статус "онлайн/оффлайн". Реалізує систему друзів — запит, прийняття чи відхилення зв'язку, а також фільтрацію користувачів за типом зв'язку (друзі/не друзі).
-
-chat_app — Дозволяє обмінюватись повідомленнями без перезавантаження сторінки через WebSocket (Django Channels). Підтримує особисті та групові чати, перевіряє список учасників при створенні групи, розсилає нові повідомлення всім учасникам одночасно та показує сповіщення про непрочитані повідомлення.
-
-
-Висновок:
-
-Проєкт був дуже корисний навіть в тому, що я зміг познайомитися з новими модулями, навчився працювати в команді, та фішкам для більш швидкого написання коду. Напевно також можна було б добавити якийсь косметичний функціонал, по типу стикерів, гіфок та іншого.
-
-
-
-
-Goal: The goal of creating this project was to personally get acquainted with new technologies, learn to learn about something on your own, communicate with others, and practice writing code more.
-
-
-Team members:
-
-Maxim Subach: https://github.com/MaxS2010
-
-Yaromir Tregub: https://github.com/YaromirTregub
-
-Isachenko Nazariy: https://github.com/IsachenkoNazar
-
-
-
-File contents (or navigation):
-
-__init__.py - marks the folder as a package
-
-models.py - data structure, DB tables
-
-views.py - query processing
-
-urls.py - URL and view binding
-
-forms.pyForms for data entry
-
-admin.py - registration of models in Django Admin
-
-apps.py - application configuration
-
-tests.py - checking that models, views, forms work correctly
-
-consumers.py - handles websocket connections for functions (chat, real-time notifications), similar to views.py, but for persistent connections.
-
-routing.py - a file for configuring web socket connection routing. It is an analogue of urls.py and works in asynchronous mode. In this file we create a URL for a web socket connection.
-
-templates - a folder that stores templates, which are then rendered by views.py
-
-static - a folder that stores static files (such as css, js, and images)
-
-utils - this file stores functions that are not a model, view, or form, but are needed for logic
-
-
-Technologies and modules used:
-
-Django is the main Python framework for building websites.
-
-Flask is another, simpler Python framework similar to Django.
-
-Django Channels is an add-on to Django to do real-time chat-like features.
-
-WebSocket is a technology that allows a website and a server to exchange messages instantly, without reloading the page.
-
-ASGI is a way to launch a Django website that supports WebSocket (as opposed to WSGI).
-
-WSGI is the standard way to launch a regular Django/Flask website.
-
-Daphne is a server that runs a Django project with WebSocket support.
-
-ORM is a way to work with a database through Python code.
-
-SQLite is a simple built-in database that Django uses by default.
-
-python-dotenv is a module to store secret data (passwords, keys) in a separate .env file.
-
-Pillow — a library for working with images (compression, resizing).
-
-django-phonenumber-field — a ready-made field for convenient entry of a phone number in a form.
-
-colorama — makes the text in the console colored (for easy reading of errors).
-
-HTML — a language used to describe the structure of a page (headings, buttons, text).
-
-CSS — a language used to style a page (colors, padding, sizes).
-
-JavaScript (JS) — a programming language that makes a page interactive (buttons, animations, queries).
-
-jQuery — an old JS library that simplifies working with page elements.
-
-AJAX — an old way to send requests to the server without reloading the page.
-
-Fetch API — a modern, simpler way to do the same thing as AJAX.
-
-Jinja (Jinja2) — a templating tool (a language for inserting data into HTML), similar to Django Templates.
-
-CSRF token — a special key that protects forms from fraudulent requests.
-
-Cookies — for remembering the user between pages (for example, that he is logged in).
-
-LiqPay — a service for accepting online payments on the site.
-
-Git — a program for saving the history of code changes.
-
-GitHub — a site where code is stored via Git and worked as a team.
-
-pip — a program for installing Python libraries.
-
-venv — a virtual environment for libraries of one project.
-
-requirements.txt — a file with a list of all libraries that the project needs.
-
-JSON — a text format in which the server and the site exchange data
-
-
-How to start the project:
-
-1. Get the project from git (you can make a git clone, or download it as a ZIP
-
-2. Create a virtual environment, and install all the necessary modules
-
-3. Run the project (python manage.py runserver), and open the link
-
-
-Project content:
-
-user_app — responsible for registering new users and logging in registered ones. Checks the entered data (email/password), and if everything is correct — creates a session that is stored in cookies. Protects pages from those who are not logged in (login_required). When exiting, the session is deleted (logout). All forms are protected by a CSRF token from fake requests.
-
-home_app — forms the main page of the site and the base template from which all other pages (header, footer, navigation menu) are inherited. Through context_processors.py, it transfers the same data (for example, information about the current user) to all site templates automatically, without repeating the code in each view.
-
-post_app — allows you to create, view, edit, and delete posts. The Post model is associated with tags via ManyToManyField. The post form is directly linked to the model (ModelForm), so Django generates the fields and validates the data. A limited number of posts are displayed on the page (pagination), and images are automatically compressed to the required size when loaded.
-
-profile_app — stores and displays extended user data: avatar, phone number, description. Shows the "online/offline" status. Implements the friend system — request, accept, or reject a connection, as well as filtering users by connection type (friends/not friends).
-
-chat_app — Allows you to exchange messages without reloading the page via WebSocket (Django Channels). Supports personal and group chats, checks the list of participants when creating a group, sends new messages to all participants at once, and shows notifications about unread messages.
-
-
-The project was very useful even in that I was able to get acquainted with new modules, learned how to work in a team, and features for faster code writing. It would probably also be possible to add some cosmetic functionality, such as stickers, gifs, and so on.
+Social Network
+Назва проєкту / Project Name
+Соціальна мережа / Social Network
+English Version
+Українська версія
+Description
+Social Network is a web application built with Django and Django Channels. The project allows users to register accounts, create and manage posts, edit personal profiles, add friends, and communicate through real-time personal and group chats.
+README Organization
+Team Members
+Technologies and Modules
+Installation Guide
+Project Structure
+Application Description
+Main Files Description
+Conclusion
+Project Purpose
+This project was created to help beginner developers learn:
+Django application architecture;
+Database design using ORM;
+Authentication and authorization systems;
+Real-time communication with WebSockets;
+Frontend and backend integration;
+Team development using Git and GitHub.
+The project demonstrates how a modern social network can be built using Python and Django technologies.
+Team Members
+Maxim Subach — https://github.com/MaxS2010
+Yaromir Tregub — https://github.com/YaromirTregub
+Nazar Isachenko — https://github.com/IsachenkoNazar
+Technologies and Modules
+Backend
+Django — the main Python framework used to build the website.
+Django Channels — extends Django with WebSocket support.
+WebSocket — enables real-time communication between the client and the server.
+ASGI — asynchronous server interface required for WebSocket support.
+Daphne — ASGI server used to run the project.
+ORM — simplifies database interaction through Python objects.
+python-dotenv — stores sensitive configuration values in environment variables.
+Pillow — image processing library.
+Frontend
+HTML — page structure.
+CSS — page styling.
+JavaScript — client-side interactivity.
+Fetch API — asynchronous communication with the server.
+Django Templates — dynamic HTML rendering.
+Additional Technologies
+SQLite — default database engine.
+CSRF Protection — security mechanism against forged requests.
+Cookies — session storage.
+Installation Guide
+1. Clone the Repository
+git clone https://github.com/MaxS2010/Social-Network.git
+2. Create a Virtual Environment
+Windows:
+python -m venv venv
+venv\Scripts\activate
+Linux/macOS:
+python3 -m venv venv
+source venv/bin/activate
+3. Install Dependencies
+pip install -r requirements.txt
+4. Configure Environment Variables
+Create a .env file and add the required environment variables.
+Example:
+SECRET_KEY=''
+
+EMAIL_HOST_USER=""
+EMAIL_HOST_PASSWORD=""
+
+DATABASE_USER=""
+DATABASE_PASSWORD=""
+DATABASE_HOST=""
+DATABASE_PORT=""
+DATABASE_NAME=""
+
+CLOUDINARY_CLOUD_NAME=""
+CLOUDINARY_API_KEY=""
+CLOUDINARY_API_SECRET=""
+5. Apply Migrations
+python manage.py migrate
+6. Run the Development Server
+python manage.py runserver
+Open your browser and visit:
+http://127.0.0.1:8000/
+Project Structure
+Social-Network
+│
+├── user_app
+├── home_app
+├── post_app
+├── profile_app
+├── chat_app
+│
+├── templates
+├── static
+├── media
+│
+├── manage.py
+└── requirements.txt
+Application Description
+Project Screenshots
+Home Page
+![Home](static/README/home.png)
+Profile Page
+![Profile](static/README/profile.png)
+Chat Page
+![Chat](static/README/chat.png)
+user_app
+Responsible for:
+user registration;
+authentication;
+session management;
+logout functionality;
+validation of registration and login forms;
+protection of private pages through authentication decorators.
+home_app
+Responsible for:
+the homepage;
+the base template shared across the project;
+global context data through context_processors.py.
+post_app
+Responsible for:
+creating posts;
+editing posts;
+deleting posts;
+pagination;
+image uploads and compression;
+tag management using Many-to-Many relationships.
+profile_app
+Responsible for:
+user profiles;
+profile avatars;
+phone numbers and descriptions;
+online/offline status indicators;
+friendship management;
+user filtering by friendship status.
+chat_app
+
+
+
+Responsible for:
+personal chats;
+group chats;
+real-time messaging through WebSockets;
+unread message notifications;
+synchronization of chat updates between users.
+Main Files Description
+models.py
+Contains database models and relationships.
+views.py
+Processes incoming HTTP requests and generates responses.
+urls.py
+Maps URLs to views.
+forms.py
+Contains Django forms used for user input validation.
+admin.py
+Registers models within Django Admin.
+apps.py
+Application configuration.
+tests.py
+Contains automated tests for models, forms, and views.
+consumers.py
+Handles WebSocket connections and real-time events.
+routing.py
+Defines WebSocket URL routes and routing configuration.
+templates/
+Stores HTML templates rendered by Django.
+static/
+Stores CSS, JavaScript files, icons, and images.
+utils/
+Contains helper functions and reusable business logic.
+Key Features
+Authentication System
+User registration and login
+Session-based authentication
+CSRF protection
+Social Features
+User profiles
+Friendship requests
+Friend management
+Online/offline status
+Posts System
+Create, edit, and delete posts
+Image uploads
+Tag support
+Pagination
+Real-Time Chat
+Personal messaging
+Group chats
+WebSocket communication
+Unread message notifications
+Conclusion
+This project provided valuable experience in web application development using Django and Django Channels. During development, the team gained practical knowledge of WebSockets, asynchronous communication, database design, frontend-backend interaction, and collaborative software development.
+Future improvements may include stickers, GIF support, voice messages, message reactions, and additional social networking features.
+Українська версія
+Опис
+Соціальна мережа, створена на Django та Django Channels. Проєкт дозволяє користувачам реєструватися, створювати пости, додавати друзів, переглядати профілі та обмінюватися повідомленнями в режимі реального часу.
+Зміст
+Учасники
+Технології та модулі
+Інструкція для запуску
+Структура проєкту
+Опис додатків
+Опис основних файлів
+Висновок
+Мета проєкту
+Цей проєкт був створений, щоб допомогти початківцям у програмуванні вивчити:
+архітектуру вебзастосунків на Django;
+проєктування баз даних за допомогою ORM;
+системи автентифікації та авторизації користувачів;
+обмін даними в режимі реального часу за допомогою WebSocket;
+інтеграцію фронтенду та бекенду;
+командну розробку з використанням Git і GitHub.
+Проєкт демонструє, як за допомогою Python та технологій Django можна створити сучасну соціальну мережу з функціями взаємодії користувачів, публікації контенту та обміну повідомленнями в реальному часі.
+Учасники
+Максим Субач — https://github.com/MaxS2010
+Яромір Трегуб — https://github.com/YaromirTregub
+Назарій Ісаченко — https://github.com/IsachenkoNazar
+Технології та модулі
+Backend
+Django — основний веб-фреймворк.
+Django Channels — підтримка WebSocket.
+Daphne — ASGI сервер.
+WebSocket — обмін повідомленнями в реальному часі.
+ORM — робота з базою даних через Python-код.
+Python-dotenv — робота зі змінними середовища.
+Pillow — обробка зображень.
+Frontend
+HTML
+CSS
+JavaScript
+Fetch API
+Django Templates (Jinja-подібний шаблонізатор)
+Інше
+SQLite
+CSRF Token
+Cookies
+Інструкція для запуску
+1. Клонування репозиторію
+git clone <repository_url>
+2. Створення віртуального оточення
+Windows:
+python -m venv venv
+venv\Scripts\activate
+Linux/macOS:
+python3 -m venv venv
+source venv/bin/activate
+3. Встановлення залежностей
+pip install -r requirements.txt
+4. Налаштування .env
+Створіть файл .env та додайте необхідні змінні середовища.
+SECRET_KEY=''
+
+EMAIL_HOST_USER=""
+EMAIL_HOST_PASSWORD=""
+
+DATABASE_USER=""
+DATABASE_PASSWORD=""
+DATABASE_HOST=""
+DATABASE_PORT=""
+DATABASE_NAME=""
+
+CLOUDINARY_CLOUD_NAME=""
+CLOUDINARY_API_KEY=""
+CLOUDINARY_API_SECRET=""
+5. Запуск проєкту
+python manage.py migrate
+python manage.py runserver
+Запустіть ваш браузер і відкрийте:
+http://127.0.0.1:8000/
+Структура проєкту
+Social-Network
+│
+├── user_app
+├── home_app
+├── post_app
+├── profile_app
+├── chat_app
+│
+├── templates
+├── static
+├── media
+│
+├── manage.py
+└── requirements.txt
+Опис додатків
+Скріншоти проєкту
+Home Page
+![Home](static/README/home.png)
+Profile Page
+![Profile](static/README/profile.png)
+Chat Page
+![Chat](static/README/chat.png)
+user_app
+Відповідає за:
+реєстрацію користувачів;
+авторизацію;
+вихід із системи;
+перевірку даних форм;
+роботу із сесіями та cookies.
+home_app
+Відповідає за:
+головну сторінку;
+передачу загальних даних через context_processors.
+post_app
+Відповідає за:
+створення постів;
+редагування постів;
+видалення постів;
+роботу із зображеннями;
+систему тегів.
+profile_app
+Відповідає за:
+профілі користувачів;
+аватари;
+статус онлайн/офлайн;
+систему друзів;
+фільтрацію користувачів.
+chat_app
+Відповідає за:
+особисті чати;
+групові чати;
+повідомлення через WebSocket;
+непрочитані повідомлення;
+оновлення даних у реальному часі.
+Опис основних файлів
+models.py
+Моделі бази даних.
+views.py
+Обробка HTTP-запитів.
+urls.py
+Маршрутизація URL.
+forms.py
+Форми введення даних.
+admin.py
+Реєстрація моделей в Django Admin.
+apps.py
+Конфігурація додатку.
+tests.py
+Тестування моделей, форм та представлень.
+consumers.py
+Обробка WebSocket-з'єднань.
+routing.py
+Маршрутизація WebSocket-з'єднань.
+templates/
+HTML-шаблони.
+static/
+CSS, JavaScript та зображення.
+utils/
+Допоміжні функції для бізнес-логіки.
+Висновок
+Під час розробки проєкту було отримано практичний досвід роботи з Django, Django Channels, WebSocket та командною розробкою. Проєкт дозволив покращити навички проєктування веб-застосунків, організації коду та роботи з сучасними вебтехнологіями.
+У майбутньому проєкт можна розширити додаванням стікерів, GIF-анімацій, голосових повідомлень та інших соціальних функцій.
